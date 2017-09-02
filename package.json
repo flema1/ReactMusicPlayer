@@ -1,0 +1,26 @@
+{
+  "name": "ReactMusicPlayer",
+  "version": "1.0.0",
+  "description": "A music player in React.js and Express.js",
+  "main": "index.js",
+  "repository": "https://github.com/flema1/ReactMusicPlayer.git",
+  "author": "Franklin Lema",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "debugger": "DEBUG=*:* nodemon app.js"
+  },
+  "dependencies": {
+    "co-bcryptjs": "^0.2.0",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "es6-promise": "^4.1.1",
+    "express-session": "^1.15.5",
+    "isomorphic-fetch": "^2.2.1",
+    "nodemon": "^1.11.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg-promise": "^6.5.1"
+  }
+}

@@ -1,0 +1,127 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.player_container{
+  background-color: black; 
+  width: 500px;
+  height: 500px; 
+  margin: auto;
+  padding-top: 15px;
+  /*border-radius: 30px;*/
+}
+.contols{
+  display: flex;
+  flex-direction: row;
+  background: black;
+  justify-content:center;
+}
+
+.play_button{
+  /*background-color: grey;
+  width: 100px;
+  height: 100px;
+  margin: auto; */
+  /*circle*/
+  margin-top: 20px;
+  display: flex;
+  width: 200px;
+	height: 200px;
+	background:  grey;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50%;
+  margin: auto;
+ 
+
+
+}
+.play_icon{
+    background-color: grey;
+    margin: auto; 
+    width: 0;
+    height: 0;
+    border-right:none;
+    border-left: 100px solid white;
+    border-bottom: 50px solid transparent;
+    border-top: 50px solid transparent;
+  }
+
+/*.play_icon:hover {
+    background-color: rgba(0,0,0,0);
+    border-left-color: grey;
+}*/
+
+.pause_icon{
+    width: 50px;
+    height: 100px;
+    /*background: white;*/
+    border-right: 10px solid white;
+    border-left: 10px solid  white;
+    margin: auto; 
+}
+
+.album_cover{
+    height: 250px;
+}
+
+.f_foward_inner{
+   background-color: black;
+    margin: auto; 
+    width: 0;
+    height: 0;
+    border-right: none;
+    border-left: 35px solid white;
+    border-bottom: 30px solid transparent;
+    border-top: 30px solid transparent;
+ 
+}
+.f_foward_right{
+    margin-top: 70%;
+    margin-right: 30px;
+
+  display: flex;
+  flex-direction: row; 
+
+}
+.f_foward_left{
+    margin-top: 70%;
+    margin-left: 30px;
+
+  display: flex;
+  flex-direction: row; 
+
+}
+
+.b_b_inner{
+  background-color: black;
+    margin: auto; 
+   
+    
+  width: 0;
+	height: 0;
+	    border-top: 30px solid transparent;
+    border-right: 35px solid white;
+    border-bottom: 30px solid transparent;
+}
