@@ -26,22 +26,7 @@ export default class SingleSong extends Component {
 
 }
 
-activateLasers=(storeId, setSong)=>{
-   console.log('lasers');
-//    axios(`/rPlayer/test`, {method: 'GET'})
-//       .then(res => {
-//          console.log(res.data);
-//         this.setState({
-//            streamURl:res.data.data.music,
-//            img:res.data.data.img,
-//            apidataLoaded:true,
-//            songs:res.data.data.songs
-//         })
-//       this.audio.src= res.data;
-//       this.audio.play();
-//       }).catch(function (error) {
-//         console.log(error);
-//     });
+getSong=(storeId, setSong)=>{
 console.log('-----------------');
 axios.post('/rPlayer/song', {
     // song: this.state.value
@@ -51,10 +36,7 @@ axios.post('/rPlayer/song', {
          console.log('back');
          console.log(res.data.data);
         this.setState({
-           streamURl:res.data.data,
-        //    img:res.data.data.img,
-        //    apidataLoaded:true
-        //    songs:res.data.data.songs
+           streamURl:res.data.data
     })
     // alert(res.data.data.music);
       setSong(res.data.data);
@@ -91,7 +73,7 @@ render() {
                     
                     <Ionicons.IoPlay 
                         className={"edit"}
-                         width={'500px'} height={'7em'} onClick={()=>this.activateLasers(song.storeId, setSong)}/> 
+                         width={'500px'} height={'7em'} onClick={()=>this.getSong(song.storeId, setSong)}/> 
                     </div>
                      
             </div>
