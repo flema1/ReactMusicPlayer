@@ -3,15 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.2",
+    "fs": "0.0.1-security",
+    "itunes-library-stream": "^0.0.0",
+    "mediaserver": "^0.1.0",
+    "node-dir": "^0.1.17",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.12"
+    "react-icons": "^2.2.7",
+    "react-scripts": "1.0.12",
+    "userhome": "^1.0.0",
+    "yarn": "^0.27.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-   },
+  },
   "proxy": "http://localhost:3001"
 }
