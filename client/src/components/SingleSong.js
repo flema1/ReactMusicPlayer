@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import axios from 'axios';
+import * as Ionicons from 'react-icons/lib/io'
 
 
 
