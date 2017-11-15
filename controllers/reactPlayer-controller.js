@@ -15,9 +15,61 @@ var PlayMusic = require('playmusic');
 
 var pm = new PlayMusic();
 
+
+
+
+reactPlayerController.loadPlaylist=(req,res)=>{
+        pm.init({email: process.env.email, password: process.env.password}, (err)=> {
+        if(err) console.error(err)
+        else console.log("great", req.body.playlistId);
+    
+                pm.getPlayListEntries(function(err, data) {
+                            var songData=[];
+                            var playList=data.data.items;
+
+                            playList.map((data)=>{
+                                    if ( data.track!== undefined && data.playlistId===req.body.playlistId){
+                                            console.log(data.track.title, "----------------");
+                                            songData.push({ title:data.track.title,
+                                                    artist:data.track.artist, 
+                                                    cover: data.track.albumArtRef, 
+                                                    storeId: data.track.storeId
+                                            });
+                                    }
+                            })
+
+                        res.status(200).json({data: songData});
+                })
+        })
+        
+}
+
+reactPlayerController.getPlayLists=(req,res)=>{
+        pm.init({email: process.env.email, password: process.env.password}, (err)=> {
+        if(err) console.error(err)
+        else console.log("great");
+        pm.getPlayLists(function(err, data) {
+                if(err) console.error(err);
+                var playlistData=[];
+                for (var i=0; i<data.data.items.length;i++){
+                        // console.log(data.data.items[i]);
+                        playlistData.push({
+                            name: data.data.items[i].name,
+                            id:data.data.items[i].id
+                        });
+                        console.log(data.data.items[i].id,"id");
+                        console.log(data.data.items[i].name,"name");
+                };
+
+                 res.status(200).json({data: playlistData});
+        })
+    })
+}
+
+
 reactPlayerController.song= (req,res)=>{
-  pm.init({email: process.env.email, password: process.env.password}, function(err) {
-        pm.getStreamUrl(req.body.storeId, function(err, streamUrl) {
+  pm.init({email: process.env.email, password: process.env.password}, (err)=> {
+        pm.getStreamUrl(req.body.storeId, (err, streamUrl)=> {
             if(err) console.error(err);
             console.log("09090");
             res.status(200).json({data: streamUrl});
@@ -28,36 +80,34 @@ reactPlayerController.song= (req,res)=>{
 
 reactPlayerController.search= (req,res)=>{
   console.log(req.body.song, "SEARCHING");
-  pm.init({email: process.env.email, password: process.env.password}, function(err) {
+  pm.init({email: process.env.email, password: process.env.password}, (err)=> {
     if(err) return console.log("error", err);
-    pm.getLibrary(function(err, library) {
+    pm.getLibrary((err, library)=>{
         if(err) console.error(err);
       
-        pm.search(req.body.song, 10, function(err, data) { // max 10 results
-        var songX = data.entries
-        var songXS = songX.filter(function(data){
-          return data.type=='1' ;
-        });
+        pm.search(req.body.song, 20, (err, data)=>{ // max 10 results
+        var songXS = data.entries.filter((data)=> data.type=='1');
 
         var songData=[];
-        songXS.map(function(data){
-        songData.push({ title:data.track.title,
-                        artist:data.track.artist, 
-                        cover: data.track.albumArtRef, 
-                        storeId: data.track.storeId
-                      });
+        songXS.map((data)=>{
+                songData.push({ title:data.track.title,
+                                artist:data.track.artist, 
+                                cover: data.track.albumArtRef, 
+                                storeId: data.track.storeId
+                              });
         })
 
         console.log(songData);
 
-        pm.getStreamUrl(songXS[1].track.storeId, function(err, streamUrl) {
+        pm.getStreamUrl(songXS[1].track.storeId, (err, streamUrl)=> {
             if(err) console.error(err);
             // console.log(streamUrl);
             console.log(songXS[0].track.albumArtRef[0].url);
             // res.status(200).json({data: {music:streamUrl, img:songXS[0].track.albumArtRef[0].url}});
             res.status(200).json({data: {music:streamUrl, img:songXS[0].track.albumArtRef[0].url, songs:songData}});
         });
-    }, function(message, body, err, httpResponse) {
+
+    }, (message, body, err, httpResponse)=> {
         console.log(message);
     });
     });
@@ -79,11 +129,7 @@ console.log("cgfhvbjnm" +songsPaths);
 
 var data=[]; 
     
-let trim= function(title){
-return title.substring(0, title.length-4);
-
-}
-
+let trim=(title)=>title.substring(0, title.length-4);
 
 fs.readdir(reactPlayer, (err, files) => {
   files.forEach(file => {

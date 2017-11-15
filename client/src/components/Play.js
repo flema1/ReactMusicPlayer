@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-export default class FastforwardButton extends Component {
+export default class PlayButton extends Component {
     constructor() {
         super();
             this.state = {
@@ -10,17 +10,17 @@ export default class FastforwardButton extends Component {
         }
  
     handleClick=()=>{
-        console.log("clicked FF_left")
+        console.log("clicked")
         this.setState({toogle: this.state.toogle ? false : true });
     }
 
     render(){
         return (
-            <div className="f_foward_left">
-                <div className="f_foward_inner"></div>
-                <div className="f_foward_inner"></div>
+            <div className="play_button" onClick= {()=>this.handleClick()}>
+                <div className= { this.state.toogle ? "pause_icon": "play_icon"}></div>
             </div>
-          
         )
     }
 }
+
+
