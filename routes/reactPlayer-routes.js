@@ -8,6 +8,10 @@ const reactPlayerController = require('../controllers/reactPlayer-controller');
 
 reactPlayerRouter.post('/song',reactPlayerController.song);
 reactPlayerRouter.post('/search',reactPlayerController.search);
+reactPlayerRouter.get('/playlists',reactPlayerController.getPlayLists);
+reactPlayerRouter.post('/loadPlaylist',reactPlayerController.loadPlaylist);
+
+
 
 
 module.exports = reactPlayerRouter;
