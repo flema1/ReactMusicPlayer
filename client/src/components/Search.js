@@ -19,7 +19,7 @@ export default class Search extends Component {
          songs:null,
          img:null,
          //
-         value:null
+         value:''
          //
         
     }
@@ -99,10 +99,8 @@ render() {
       let component= null;
       if (dataloaded===true){
         {console.log(this.state.streamURl)}
-        component= <div>
-        <Sound streamURl={this.state.streamURl}/>
-        <div>
-         {this.state.songs.map((song, index) => <SingleSong song={song} index={index} setSong={this.setSong}/>
+        component= <div><Sound streamURl={this.state.streamURl}/><div>
+         {this.state.songs.map((song, index) => <SingleSong song={song} key={index} setSong={this.setSong}/>
      
          )}
          </div>
