@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import SingleSong from './SingleSong';
 import Sound from './Sound';
 import axios from 'axios';
+import { connect } from 'react-redux'; 
 
+const searchRedux = (title) => {
+  return {
+    type: 'GET_SEARCH_LIST_DATA',
+    title
+  };
+};
 
-export default class SearchResults extends Component {
+ class SearchResults extends Component {
   constructor() {
     super();
      this.state = {
@@ -16,33 +23,49 @@ export default class SearchResults extends Component {
 
 componentWillReceiveProps(nextProps){
     if (this.props.load===true){
-    // alert(this.props.title)
-        axios.post('/rPlayer/search', {
-          song: this.props.title
-        })
-        .then(res => {
-        // console.log(res.data);
-        this.setState({
-        //    streamURl:res.data.data.music,
-           img:res.data.data.img,
-           apidataLoaded:true,
-           songs:res.data.data.songs
-        })
-      }).catch(function (error) {
-            console.log(error);
-        });
-    }}
+     // alert(this.props.title)
+        this.props.search(this.props.title);
+
+       
+    }
+}
 
 handleSubmit=(event)=>event.preventDefault();
 setSong=(songUrl)=>this.setState({ streamURl:songUrl })
 
 render() {
-    const {apidataLoaded, streamURl, songs} = this.state;
+    const { streamURl} = this.state;
+    const {songs, songsApidataLoaded} = this.props;
     return (
         <div>
             <Sound streamURl={streamURl}/>
-            {apidataLoaded ? songs.map((song, index) => <SingleSong song={song} key={index} setSong={this.setSong}/>):<h1>Searching</h1>}
+            {songsApidataLoaded ? this.props.songs.map((song, index) => <SingleSong  allPlayLists={this.props.allPlayLists} song={
+                song} key={index} setSong={this.setSong}/>):<h1>Searching</h1>}
         </div>
     )}
 
 }
+
+
+
+
+
+const mapStateToProps = (state) => { 
+  return {  test: state.test, 
+            playlists: state.playlists,
+            songs: state.songs,
+            songsApidataLoaded:state.songsApidataLoaded
+   };
+};
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+     
+    search(title) {
+            dispatch(searchRedux(title));
+
+    }
+    
+  }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
