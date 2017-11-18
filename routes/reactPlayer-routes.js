@@ -10,6 +10,7 @@ reactPlayerRouter.post('/song',reactPlayerController.song);
 reactPlayerRouter.post('/search',reactPlayerController.search);
 reactPlayerRouter.get('/playlists',reactPlayerController.getPlayLists);
 reactPlayerRouter.post('/loadPlaylist',reactPlayerController.loadPlaylist);
+reactPlayerRouter.post('/addToPlaylist',reactPlayerController.addToPlaylist);
 
 
 
