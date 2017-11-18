@@ -10,7 +10,6 @@ export default class Nav extends Component {
           <ul>
             <li><Link to="/Home">Home</Link></li>
             <li><Link to="/PlayListsList">PlayLists</Link></li>
-            <li><Link to="/PlayList">Playlist</Link></li>
             <li><div><SearchBar handleChange={handleChange} handleSubmit={handleSubmit}/></div></li>
            </ul>
       </nav>
