@@ -18,6 +18,18 @@ var pm = new PlayMusic();
 
 
 
+// (songIds, playlistId, callback, entryBeforeClientId, entryAfterClientId) 
+reactPlayerController.addToPlaylist=(req,res)=>{
+     pm.init({email: process.env.email, password: process.env.password}, (err)=> {
+        if(err) console.error(err)
+        else console.log("great", req.body.songId);
+        pm.addTrackToPlayList(req.body.songId, req.body.playlistID, function(err, mutationStatus){
+        console.log(mutationStatus);
+    })
+
+     });
+
+}
 reactPlayerController.loadPlaylist=(req,res)=>{
         pm.init({email: process.env.email, password: process.env.password}, (err)=> {
         if(err) console.error(err)
@@ -26,14 +38,17 @@ reactPlayerController.loadPlaylist=(req,res)=>{
                 pm.getPlayListEntries(function(err, data) {
                             var songData=[];
                             var playList=data.data.items;
+                            var index=0;
 
                             playList.map((data)=>{
                                     if ( data.track!== undefined && data.playlistId===req.body.playlistId){
+                                            
                                             console.log(data.track.title, "----------------");
                                             songData.push({ title:data.track.title,
                                                     artist:data.track.artist, 
                                                     cover: data.track.albumArtRef, 
-                                                    storeId: data.track.storeId
+                                                    storeId: data.track.storeId,
+                                                    index:index++
                                             });
                                     }
                             })
