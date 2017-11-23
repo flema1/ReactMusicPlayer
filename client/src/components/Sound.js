@@ -63,12 +63,15 @@ class Sound extends Component {
 		this.audio.pause(); 
         this.handleToggle();
 	}
+
     handleSkipNext() {
-        let updatedTrackIndex=this.props.trackIndex+1;
+        let updatedTrackIndex=null;
+        this.props.trackIndex===this.props.songs.length-1 ? updatedTrackIndex=0 : updatedTrackIndex=this.props.trackIndex+1;
         let updatedTrackId=this.props.songs[updatedTrackIndex].storeId;
 		console.log(updatedTrackId,"Next");
         this.props.loadTrackStreamURl(updatedTrackId, updatedTrackIndex);
 	}
+    
     handleSkipPrevious() {
 		console.log(this.props.trackIndex,"Previous");
         this.props.skipPreviousTrack();
