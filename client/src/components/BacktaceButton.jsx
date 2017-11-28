@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as Ionicons from 'react-icons/lib/md'
 
 
 export default class BacktaceButton extends Component {
@@ -17,9 +18,12 @@ export default class BacktaceButton extends Component {
     render(){
         return (
             <div className="f_foward_right">
-                        <div className="b_b_inner"></div>
-                        <div className="b_b_inner"></div>
+                    <Ionicons.MdSkipPrevious 
+                    onClick={()=>this.handleClick()}
+                    className={"play-button"}
+                    width={'500px'} height={'7em'} />  
             </div>
+           
       
         )
     }
