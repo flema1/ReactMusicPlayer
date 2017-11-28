@@ -37,8 +37,8 @@ render() {
     const { streamURl} = this.state;
     const {songs, songsApidataLoaded} = this.props;
     return (
-        <div>
-            <Sound streamURl={streamURl}/>
+        <div className={"results"}>
+            {/*<Sound streamURl={streamURl}/>*/}
             {songsApidataLoaded ? this.props.songs.map((song, index) => <SingleSong  allPlayLists={this.props.allPlayLists} song={
                 song} key={index} setSong={this.setSong}/>):<h1>Searching</h1>}
         </div>

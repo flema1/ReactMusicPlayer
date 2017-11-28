@@ -5,6 +5,32 @@ export const apiMiddleware = store => next => action => {
     next(action)
     switch (action.type) {
     
+
+   
+    case 'NEXT_TRACK_INDEX':
+    console.log(store.state,"SinglePlaylistSongs")
+    break;
+
+    case 'SET_Track_STREAM_URL':
+        console.log('-----------------',action.storeId);
+        axios.post('/rPlayer/song', {
+            storeId:action.storeId
+        })
+        .then(res => {
+                console.log('back');
+                console.log(res.data.data);
+        return next({
+                        type: 'Track_STREAM_URL_RECIEVED',
+                        streamURl:res.data.data,
+                        trackIndex: action.trackIndex
+                    })
+      }).catch(function (error) {
+        console.log(error);
+    });
+
+    break;
+
+    
     case 'SAVE_TO_PLAYLIST_ID':
         console.log('SAVE_TO_PLAYLIST_ID',action.songId,action.playListId);
         axios.post('/rPlayer/addToPlaylist', {
@@ -42,7 +68,7 @@ export const apiMiddleware = store => next => action => {
         axios.post('/rPlayer/loadPlaylist', {
             playlistId: action.playListId
         }).then(res => {
-                            console.log(res.data.data);
+                            console.log(res.data.data, "heheheheeeheh");
                             return next({
                                 type: 'GET_PLAYLIST_SONGS_DATA_RECEIVED',
                                 data:res.data.data

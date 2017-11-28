@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as Ionicons from 'react-icons/lib/md'
 
 
 export default class PlayButton extends Component {
@@ -16,9 +17,12 @@ export default class PlayButton extends Component {
 
     render(){
         return (
-            <div className="play_button" onClick= {()=>this.handleClick()}>
-                <div className= { this.state.toogle ? "pause_icon": "play_icon"}></div>
-            </div>
+        this.state.toogle ? <Ionicons.MdPauseCircleOutline  
+        onClick={()=>this.handleClick()}
+        className={"play-button"}  width={'500px'} height={'7em'} /> : <Ionicons.MdPlayCircleOutline 
+        onClick={()=>this.handleClick()}
+        className={"play-button"}
+        width={'500px'} height={'7em'}  />  
         )
     }
 }

@@ -37,7 +37,6 @@ class PlaylistList extends Component {
             const {  playlists, loadPlaylistId } = this.props; 
             return (
                     <div className={'playlistList'}>
-                        <Sound streamURl={streamURl}/>
                         {playlists ? playlists.map((playlist, index) => <div key={index}>
                                   <h1>{playlist.name}</h1>
                                   <h1>{playlist.id}</h1>
