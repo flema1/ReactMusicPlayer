@@ -8,7 +8,7 @@ import axios from 'axios';
 import * as Ionicons from 'react-icons/lib/io'
 
 
-export default class Search extends Component {
+class Search extends Component {
   constructor() {
     super();
      this.state = {
@@ -16,7 +16,7 @@ export default class Search extends Component {
          currentSong:null,
          streamURl:null,
          apidataLoaded:false,
-         songs:null,
+        
          img:null,
          //
          value:''
@@ -38,20 +38,8 @@ export default class Search extends Component {
 
  activateLasers=()=>{
    console.log('lasers');
-//    axios(`/rPlayer/test`, {method: 'GET'})
-//       .then(res => {
-//          console.log(res.data);
-//         this.setState({
-//            streamURl:res.data.data.music,
-//            img:res.data.data.img,
-//            apidataLoaded:true,
-//            songs:res.data.data.songs
-//         })
-//       this.audio.src= res.data;
-//       this.audio.play();
-//       }).catch(function (error) {
-//         console.log(error);
-//     });
+    this.props.search();
+
 console.log('-----------------');
 axios.post('/rPlayer/search', {
     song: this.state.value
@@ -63,17 +51,19 @@ axios.post('/rPlayer/search', {
         //    streamURl:res.data.data.music,
            img:res.data.data.img,
            apidataLoaded:true,
-           songs:res.data.data.songs
+        //    songs:res.data.data.songs
         })
     //   this.audio.src= res.data;
     //   this.audio.play();
-      }).catch(function (error) {
+      }).catch(function (error) {''
         console.log(error);
-    });}
+    });
+
+}
 
 handleSubmit(event) {
     // alert('song submitted: ' + this.state.value);
-    this.activateLasers();
+    // this.activateLasers();
     event.preventDefault();
 
   }
@@ -100,7 +90,7 @@ render() {
       if (dataloaded===true){
         {console.log(this.state.streamURl)}
         component= <div><Sound streamURl={this.state.streamURl}/><div>
-         {this.state.songs.map((song, index) => <SingleSong song={song} key={index} setSong={this.setSong}/>
+         {this.props.songs.map((song, index) => <SingleSong song={song} key={index} setSong={this.setSong}/>
      
          )}
          </div>
@@ -129,8 +119,30 @@ render() {
       {/*<button onClick={()=>this.activateLasers()}>
                   Activate Lasers
       </button>*/}
+      <h1>hello</h1>
       {component}
         </div>
     )}
 
 }
+
+
+const mapStateToProps = (state) => { 
+  return { test: state.test, 
+          playlists: state.playlists,
+          songs: state.songs
+   };
+};
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+      update() {
+      dispatch(decrement());
+    },
+    search() {
+            dispatch(getPlaylistsRedux());
+    }
+    
+  }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
