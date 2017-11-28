@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as Ionicons from 'react-icons/lib/md'
 
 
 export default class FastforwardButton extends Component {
@@ -17,8 +18,10 @@ export default class FastforwardButton extends Component {
     render(){
         return (
             <div className="f_foward_left">
-                <div className="f_foward_inner"></div>
-                <div className="f_foward_inner"></div>
+                    <Ionicons.MdSkipNext 
+        onClick={()=>this.handleClick()}
+        className={"play-button"}
+        width={'500px'} height={'7em'}  />   
             </div>
           
         )
