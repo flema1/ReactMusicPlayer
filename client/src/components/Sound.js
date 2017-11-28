@@ -1,7 +1,10 @@
 
 
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
 import PlayButton from './Play';
+import ProgressBar from './ProgressBar';
 import FastforwardButton from './FastforwardButton';
 import BacktaceButton from './BacktaceButton';
 import * as Ionicons from 'react-icons/lib/md'
@@ -41,18 +44,42 @@ class Sound extends Component {
     super();
      this.state = {
          active:false,
-         toggle: false
+         toggle: false,
+           barPosition:0,
+           button:0,
+           duration:null
     }
 }
+
+
     componentWillReceiveProps(nextProps){
         if (nextProps !== this.props && nextProps.streamURl!==null) {
         // alert(nextProps.streamURl,"change", this.props.streamURl)
-            this.setState({toogle : true });
-            console.log(this.props)
+            this.setState({toogle : true, button:0 });
+           
+           
+            this.audio.addEventListener("timeupdate", () => {
+                this.setState({ barPosition : (this.audio.currentTime/this.audio.duration)*100 ,  
+                     duration:this.audio.duration,
+                    button: this.state.barPosition*5
+                 });
+                 // console.log(this.state.barPosition*5,"barPosition");
+
+            });
             return true
         }
     }
 
+_onMouseMove(e) {
+
+    var width=ReactDOM.findDOMNode(this).getBoundingClientRect();
+    console.log(width,"width");
+    console.log(e.nativeEvent.offsetX/500,"screenX", e.pageX);
+   
+    this.setState({ button: e.nativeEvent.offsetX });
+    //console.log(this.state.button, "button");
+    this.audio.currentTime=  e.nativeEvent.offsetX/500*this.state.duration;
+  }
   	handlePlay() {
 		this.audio.play();
         this.handleToggle();
@@ -119,6 +146,23 @@ class Sound extends Component {
                         className={"play-button"}
                         width={'50px'} height={'3em'}  />   
                 </div>
+
+                 <div>
+
+           
+                
+          </div>  
+             <div id="audio-player-container" >
+                <div  className={"audio-progress"} id="audio-progress" onClick={this._onMouseMove.bind(this) }>
+                  <div id="draggable-point" style={{left:this.state.button,position:'absolute'}}  
+                    className={"draggable ui-widget-content"}>
+                    <div id="audio-progress-handle"></div>
+                    </div>
+                    <div id="audio-progress-bar"  className={"bar"} style={{width: this.state.barPosition +'%'} }>
+                    </div>
+                  </div>
+                </div>
+          {/*<div id="posX"></div>*/}
             </div>
         )
     }
