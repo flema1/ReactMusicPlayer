@@ -39,15 +39,23 @@ reactPlayerController.loadPlaylist=(req,res)=>{
                             var songData=[];
                             var playList=data.data.items;
                             var index=0;
-
+                            console.log(playList);
                             playList.map((data)=>{
                                     if ( data.track!== undefined && data.playlistId===req.body.playlistId){
                                             
+                                            millisToMinutesAndSeconds=(millis)=> {
+                                                var minutes = Math.floor(millis / 60000);
+                                                var seconds = ((millis % 60000) / 1000).toFixed(0);
+                                                return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+                                            }
+
                                             console.log(data.track.title, "----------------");
                                             songData.push({ title:data.track.title,
                                                     artist:data.track.artist, 
                                                     cover: data.track.albumArtRef, 
                                                     storeId: data.track.storeId,
+                                                    album: data.track.album,
+                                                    durationMillis: millisToMinutesAndSeconds(data.track.durationMillis),
                                                     index:index++
                                             });
                                     }
@@ -104,6 +112,7 @@ reactPlayerController.search= (req,res)=>{
         var songXS = data.entries.filter((data)=> data.type=='1');
 
         var songData=[];
+        console.log(data,"dataaaa");
         songXS.map((data)=>{
                 songData.push({ title:data.track.title,
                                 artist:data.track.artist, 
