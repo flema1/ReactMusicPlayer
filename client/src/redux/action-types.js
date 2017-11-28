@@ -10,6 +10,24 @@ export const GET_SEARCH_DATA_RECEIVED = 'GET_SEARCH_DATA_RECEIVED'
 
 export const SET_PLAYLIST_ID = 'SET_PLAYLIST_ID'
 
+export const SET_Track_STREAM_URL = 'SET_Track_STREAM_URL'
+
+export const Track_STREAM_URL_RECIEVED = 'Track_STREAM_URL_RECIEVED'
+
+export const PREVIOUS_TRACK_INDEX = 'PREVIOUS_TRACK_INDEX'
+
+export const NEXT_TRACK_INDEX = 'NEXT_TRACK_INDEX'
+
+export const TRACK_INDEX_UPDATED = 'TRACK_INDEX_UPDATED'
+
+
+
+
+
+
+
+
+
 
 
 
