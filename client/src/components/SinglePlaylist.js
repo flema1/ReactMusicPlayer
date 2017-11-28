@@ -38,9 +38,10 @@ const getPlaylistSongsRedux = (playListId) => {
     const {streamURl} = this.state;
     const { playListId,apidataLoaded, songs} = this.props;
         return (
-            <div className={'container'} >
-                 <Sound streamURl={streamURl}/>
-                 {apidataLoaded ? songs.map((song, index) => <SingleSong song={song} key={index} setSong={this.setSong}/>):<h1>Search</h1>}
+            <div className={'playListContainer'} >
+                 {apidataLoaded ? songs.map((song, index) => <SingleSong 
+                
+                 song={song} key={index} />):<h1>Search</h1>}
             </div>
             )
     }
