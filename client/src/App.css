@@ -1,65 +1,41 @@
+/*
 .App {
   text-align: center;
 }
+/*
+#app div{
+height:100%;
+width:100%;
+}*/
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.player_container{
-  background-color: black; 
-  width: 500px;
-  height: 500px; 
-  margin: auto;
-  padding-top: 15px;
-  /*border-radius: 30px;*/
-}
-.contols{
-  display: flex;
-  flex-direction: row;
-  background: black;
-  justify-content:center;
+.controls{
+    display: flex;
+    flex-direction: column;
+    /*background: black;*/
+    align-items: center;
+    justify-content: center;
 }
 
 .play_button{
-  /*background-color: grey;
-  width: 100px;
-  height: 100px;
-  margin: auto; */
-  /*circle*/
-  margin-top: 20px;
-  display: flex;
-  width: 200px;
-	height: 200px;
-	background:  grey;
-	-moz-border-radius: 50px;
-	-webkit-border-radius: 50px;
-	border-radius: 50%;
-  margin: auto;
- 
-
-
+    
+    display: flex;
+    width: 200px;
+    height: 200px;
+    color: white;
+    margin: 20px;
 }
+
 .play_icon{
     background-color: grey;
     margin: auto; 
+    padding-left: 0px;
     width: 0;
     height: 0;
     border-right:none;
@@ -68,10 +44,14 @@
     border-top: 50px solid transparent;
   }
 
-/*.play_icon:hover {
-    background-color: rgba(0,0,0,0);
-    border-left-color: grey;
-}*/
+.play_icon:hover {
+    /*background-color: rgba(0,0,0,0);
+    border-left-color: grey;*/
+      border-left: 120px solid white;
+    border-bottom: 60px solid transparent;
+    border-top: 60px solid transparent;
+
+}
 
 .pause_icon{
     width: 50px;
@@ -82,8 +62,20 @@
     margin: auto; 
 }
 
-.album_cover{
+/*.album_cover{
     height: 250px;
+}*/
+
+
+.f_foward_right{  
+    /*margin-right: 30px;*/
+    display: flex;
+    flex-direction: row; 
+}
+.f_foward_left{
+    /*margin-left: 30px;*/
+    display: flex;
+    flex-direction: row; 
 }
 
 .f_foward_inner{
@@ -97,80 +89,14 @@
     border-top: 30px solid transparent;
  
 }
-.f_foward_right{
-    margin-top: 70%;
-    margin-right: 30px;
-
-  display: flex;
-  flex-direction: row; 
-
-}
-.f_foward_left{
-    margin-top: 70%;
-    margin-left: 30px;
-
-  display: flex;
-  flex-direction: row; 
-
-}
-
 .b_b_inner{
-  background-color: black;
+    background-color: black;
     margin: auto; 
-   
-    
-  width: 0;
-	height: 0;
-	    border-top: 30px solid transparent;
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
     border-right: 35px solid white;
     border-bottom: 30px solid transparent;
-}
-
-.loadPlaylist{
-  width: 50px;
-  height: 50px; 
-  background: silver;
-}
-.bob{
-   width: 50px;
-  height: 50px; 
-  background: pink;
-}
-
-.playslist_container{
-   width: 100px;
-  height: 200px; 
-    background: aqua; 
-    list-style-type: none;
-}
-
-.library_whole{
-  background: black;
-  color: white; 
-  height: 100vh;
-}
-
-.library_partial{
-    background: black;
-    color: white; 
-    height: 25vh;
-    width: 25vh;
-
-}
-
-.main{
-  display: flex; 
-}
-
-.play{
-  width: 25%;
-  flex: 1;
-}
-
-
-.library{
-  width:75%;
-  flex: 1; 
 }
 
 
@@ -181,31 +107,70 @@
 
 .container {
   font-family: 'Play', sans-serif;
-  display: inline-block;
   padding: 10px;
+  display: flex;
+  flex-direction: row;
+   box-shadow: 1px 1px 1px 1px #ccc;
+    width: 75%;
+  margin: auto;
+}
+
+.playListContainer{
+   display: flex;
+  flex-direction: column;
+  width: 75%;
+  margin: auto;
+   overflow: 'scroll'
+}
+
+.clickmenu .title .edit{
+  flex:1;
+  margin: auto;
+}
+
+.image{
+  margin: auto;
+  height: 20px;
+  width:20px; 
+  flex:1;
 }
 .positioner {
   flex:1;
-  width: 40%;
-  height: 40%;
+  width: 5%;
+  height: 5%;
 }
 .edit {
-  color: #ff8c00;
-  position: absolute;
-  padding-left:90px;
-  margin-top: -70px;
+  /*color: #dbcfcf;*/
+  color:#af9c9c;
+  position: relative;
+  /*padding-left:90px;
+  margin-top: -70px;*/
+}
+.title{
+  font-size: 14px;
+}
+.play-button {
+  /*color: #ff8c00;*/
+  /*color: #fff;*/
+  color: tomato;
+  /*color: #dbcfcf;*/
+  /*position: absolute;*/
+   position: relative; 
+ 
 }
 
+.Previous {
+    color: red;
+
+}
 .edit:hover {
   color: grey
 }
 
-
-
 .searchBar{
-  background: #ff8c00;
-  display: flex;
-  flex-direction: column;
+  /*background: red;*/
+  /*display: flex;*/
+  flex-direction: row;
 }
 form{
  /*display: flex;
@@ -220,6 +185,7 @@ textarea{
     /*border-color: inherit;*/
      border: none;
      flex: 1;
+     box-shadow: 1px 1px 1px 1px #ccc;
 }
 
 
@@ -230,3 +196,470 @@ input{
   background: red;
   border:none;
 }
+
+
+/*//*/
+
+nav ul {
+  display: flex;
+  margin: 20px;
+  list-style: none;
+}
+
+nav ul li {
+  padding: 15px;
+  font-size: 1.3em;
+  /*letter-spacing: 1px;*/
+  /*text-transform: uppercase;*/
+  font-family: 'Arial','inconsolata', monospace;
+}
+
+nav ul li a {
+  color: black;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  font-weight: bold;
+}
+
+svg {
+   position: absolute;
+   /*background: red;*/
+}
+
+.playlistList{
+  /*background-color: green; */
+  display: flex;
+  flex-direction: column;
+}
+
+.MenuItem{
+  background: green; 
+}
+.react-contextmenu-wrapper{
+ overflow: scroll; 
+}
+.react-contextmenu-item{
+ 
+}
+
+.react-contextmenu.react-contextmenu {
+  background: red;
+   overflow: scroll; 
+
+
+}
+
+.divsd{
+   overflow: scroll; 
+   height: 50px; 
+}
+
+.hi{
+  background: red;
+  width: 92px;
+}
+
+.innerMenu{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+/**/
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    /*display: inline-block;*/
+    display: flex;
+    flex-direction: row; 
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  
+    height: 150px;
+    overflow: scroll;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+
+::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+/*
+.container {
+    -ms-overflow-style: none;  // IE 10+
+    overflow: -moz-scrollbars-none;  // Firefox
+}
+.container::-webkit-scrollbar { 
+    display: none;  // Safari and Chrome
+}*/
+
+controls .Previous{
+  color: red;
+}
+
+.results{
+      display: flex;
+    flex-direction: column;
+}
+
+
+.album {
+  flex:1;
+  margin: auto;
+  font-size: 14px;
+  /*background: red;*/
+}
+
+.durationMillis {
+  flex:1;
+  margin: auto;
+  font-size: 14px;
+  /*background: red;*/
+}
+
+
+.artist{
+  flex:1;
+  margin: auto;
+  font-size: 14px;
+  /*background: red;*/
+}
+
+#timeline{
+    width: 400px;
+    height: 20px;
+    border-radius: 15px;
+    background: rgba(0,0,0,.3);
+}
+
+#handle{
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	margin-top: 1px;
+	background: rgba(0, 0, 0,1);
+}
+
+.audio-progress {
+  height: .5rem;
+  width: 100%;
+  background-color: grey;
+}
+
+.audio-progress .bar {
+  height: 100%;
+  background-color: #E95F74;
+}
+
+#audio-progress-handle {
+  display: block;
+  position:absolute;
+  z-index: 1;
+  margin-top: -5px;
+  margin-left: -10px;
+  width: 10px;
+  height: 10px;
+  border: 4px solid #D3D5DF;
+  border-top-color: #D3D5DF;
+  border-right-color: #D3D5DF;
+  transform: rotate(45deg);
+  border-radius: 100%;
+  background-color: #fff;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
+  cursor:pointer;
+}
+
+/*.draggable {
+  float: left; margin: 0 10px 10px 0;
+}*/
+
+#audio-player-container{
+  background: red;
+    width: 500px;
+    position: absolute;
+}
+
+#posX{
+  height: 50px;
+  width: 50px;
+  background-color: yellow;
+  left:400px;
+  position: absolute;
+}
+
+.control-buttons{
+  align-items: center;
+  justify-content: center;
+}
+
+/**/
+
+/*Chrome*/
+
+input{ outline: none; }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input[type='range'] {
+      overflow: hidden;
+      width: 50%;
+      -webkit-appearance: none;
+      background-color: #9a905d;
+    }
+    
+    input[type='range']::-webkit-slider-runnable-track {
+      height: 10px;
+      -webkit-appearance: none;
+      color: red;
+      margin-top: -1px;
+    }
+    
+    input[type='range']::-webkit-slider-thumb {
+      width: 10px;
+      -webkit-appearance: none;
+      height: 10px;
+      cursor: ew-resize;
+      background: #434343;
+      box-shadow: -80px 0 0 80px green;
+    }
+
+}
+/** FF*/
+input[type="range"]::-moz-range-progress {
+  background-color: #43e5f7; 
+}
+input[type="range"]::-moz-range-track {  
+  background-color: #9a905d;
+}
+/* IE*/
+input[type="range"]::-ms-fill-lower {
+  background-color: #43e5f7; 
+}
+
+
+
+.container {
+    display: inline-block;
+    cursor: pointer;
+    background-color: 'red'
+}
+
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+}
+
+
+/*l*/
+
+
+body
+{
+  margin: 0;
+  padding: 0;
+  
+  background: #232323;
+  color: #cdcdcd;
+  font-family: "Avenir Next", "Avenir", sans-serif;
+}
+
+a
+{
+  text-decoration: none;
+  color: #232323;
+  
+  transition: color 0.3s ease;
+}
+
+a:hover
+{
+  color: tomato;
+}
+
+#menuToggle
+{
+  display: block;
+  position: fixed;
+  top: 50px;
+  left: 25px;
+  height:  100%;
+  
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menuToggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#menuToggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #fff;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu
+{
+  position: absolute;
+  width: 220px;
+  height: 100%;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  
+  background: #ededed;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menu li
+{
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul
+{
+  transform: none;
+}
+
+
+
+/*/*/
