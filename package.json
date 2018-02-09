@@ -18,15 +18,18 @@
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
     "es6-promise": "^4.1.1",
+    "express": "^4.16.2",
     "express-session": "^1.15.5",
     "isomorphic-fetch": "^2.2.1",
     "mediaserver": "^0.1.0",
+    "method-override": "^2.3.10",
+    "morgan": "^1.9.0",
     "node-dir": "^0.1.17",
     "nodemon": "^1.11.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg-promise": "^6.5.1",
-    "playmusic": "^2.2.1",
+    "playmusic": "^2.3.0",
     "userhome": "^1.0.0"
   }
 }
