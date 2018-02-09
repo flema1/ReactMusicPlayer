@@ -8,7 +8,13 @@ import reducer from './redux/reducer';
 import { Provider } from 'react-redux';  
 import { createStore , applyMiddleware } from 'redux'
 import { apiMiddleware } from './redux/apiMiddleware';
-const store = createStore(reducer, applyMiddleware(apiMiddleware))
+import {createLogger} from 'redux-logger';
+
+const store = createStore(reducer, applyMiddleware(apiMiddleware, createLogger({collapsed: true})));
+
+
+
+
 
 ReactDOM.render(  
   <Provider store={store}>

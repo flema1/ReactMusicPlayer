@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-
-import Playlist from './SinglePlaylist';
-import Sound from './Sound';
-import {Link } from 'react-router-dom';
 import { connect } from 'react-redux'; 
+import axios from 'axios';
 
 const getPlaylistsRedux = () => {
   return {
@@ -12,40 +8,35 @@ const getPlaylistsRedux = () => {
   };
 };
 
-const setPlaylistIdRedux = (playListId) => {
-  console.log("herere");
+const getPlaylistSongsRedux = (playListId) => {
+  console.log("GET_PLAYLIST_SONGS_DATA");
   return {
-    type: 'SET_PLAYLIST_ID',
+    type: 'GET_PLAYLIST_SONGS_DATA',
     playListId:playListId
   };
 };
 
+// const setPlaylistIdRedux = (playListId) => {
+//   console.log("herere");
+//   return {
+//     type: 'SET_PLAYLIST_ID',
+//     playListId:playListId
+//   };
+// };
+
 class PlaylistList extends Component {
-        constructor() {
-        super();
-        this.state = {
-            streamURl:null,
-        }
+  componentWillMount(){
+    this.props.getPL() 
   }
 
-  componentWillMount(){
-                this.props.getPL() 
-        }
-
-        render() {
-            const { streamURl } = this.state; 
-            const {  playlists, loadPlaylistId } = this.props; 
-            return (
-                    <div className={'playlistList'}>
-                        {playlists ? playlists.map((playlist, index) => <div key={index}>
-                                  <h1>{playlist.name}</h1>
-                                  <h1>{playlist.id}</h1>
-                                  <Link to={'/SinglePlaylist'} onClick={()=>loadPlaylistId(playlist.id)} > Load Playlist </Link>
-                                </div>)
-                            : <h1>Loading</h1>}
-                    </div>
-                    )
-        }
+  render() {
+    const {  playlists } = this.props; 
+    return (
+              <div>
+                { playlists ? playlists.map((playlist, index) => <p style={{ fontSize:12 }} key={index}  onClick={()=> this.props.loadPlaylistSongs(playlist.id)}> {playlist.name }</p> ) : <h1>Loading</h1>}
+              </div>
+            )
+  }
 }
 
 const mapStateToProps = (state) => { 
@@ -59,8 +50,9 @@ const mapDispatchToProps = (dispatch) => {
     getPL() {
         dispatch(getPlaylistsRedux());
     },
-    loadPlaylistId(playListId) {
-        dispatch(setPlaylistIdRedux(playListId));
+
+    loadPlaylistSongs(playListId) {
+            dispatch(getPlaylistSongsRedux(playListId));
     }
   }
 };

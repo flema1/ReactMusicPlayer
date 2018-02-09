@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import SingleSong from './SingleSong';
-import Sound from './Sound';
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'; 
 import axios from 'axios';
 
@@ -15,43 +13,32 @@ const getPlaylistSongsRedux = (playListId) => {
 };
 
 
+const setCurrCover = (coverUrl) => {
+  return {
+    type: 'SET_CURR_COVER',
+    payload:coverUrl
+  };
+};
+
+
  class Playlist extends Component {
-  constructor() {
-    super();
-    this.state = {
-         streamURl:null,
-    }
-  }
-
- componentWillMount() {
+   componentWillMount() {
+    console.log(this.props.playListId, 'this.props.playListId')
     this.props.loadPlaylistSongs(this.props.playListId);    
-    }
+   }
 
-    setSong=(songUrl)=>{
-                this.setState({
-                        streamURl:songUrl
-            })
-        }
-  
-
- render() {   
-    const {streamURl} = this.state;
-    const { playListId,apidataLoaded, songs} = this.props;
-        return (
-            <div className={'playListContainer'} >
-                 {apidataLoaded ? songs.map((song, index) => <SingleSong 
-                
-                 song={song} key={index} />):<h1>Search</h1>}
-            </div>
-            )
+  render() {   
+      const { apidataLoaded, songs} = this.props;
+      console.log(apidataLoaded, 'apidataLoaded', songs)
+      return (<div style={{  paddingTop:'100px',overflow: 'scroll', height:'200px'}}>
+                      {apidataLoaded ? songs.map((song, index) => <SingleSong song={song} key={index} />):<h1>Search</h1>}
+              </div>)
     }
 }
 
 
-
 const mapStateToProps = (state) => { 
   return { 
-         playListId: state.playListId,
          apidataLoaded:state.SinglePlaylistSongsApidataLoaded,
          songs:state.SinglePlaylistSongs
    };

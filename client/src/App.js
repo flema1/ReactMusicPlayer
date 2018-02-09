@@ -1,48 +1,50 @@
 import React, { Component } from 'react';
-import PlayButton from './components/PlayButton';
 import PlaylistList from './components/PlaylistList';
-import Controls from './components/Controls';
-import Nav from './partials/Nav';
-import SearchResults from './components/SearchResults'
 import SearchBar from './components/SearchBar';
+import Main from './components/Main';
+import PlayListMenu from './components/PlayListMenu';
+import SideNav from './partials/SideNav';
 import * as Ionicons from 'react-icons/lib/io'
 import axios from 'axios';
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
 
-
-export default class App extends Component {
+ export default class App extends Component {
     constructor() {
       super();
       this.state = {
-          streamURl:null,
-          searchSong:null,
-          loadComponent:false
+        shift:null
       }
     }
 
-    handleChange=(e)=> this.setState({searchSong: e.target.value})
-    handleSubmit=()=> this.setState({loadComponent: true}, ()=>{ this.setState({loadComponent: false}) })
+    componentWillMount(){
+      axios('/rPlayer/playlists', {method: 'GET'})
+      .then(res => {
+        console.log(res.data.data);
+        this.setState({
+          apidataLoaded:true,
+          allPlayLists:res.data.data
+        })
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      console.log('-----------------');    
+    }
+    
+    toggleShift(){
+      this.setState({shift:!this.state.shift})
+    }
+    
 
     render() {
-      const {searchSong, loadComponent } = this.state;
       return (
-        <Router>
             <div className="App">
-                <Controls/>
-                <Nav handleChange={this.handleChange} value={searchSong} handleSubmit={this.handleSubmit}/>
-                <Route exact path={"/PlayListsList"} component={PlaylistList}/>
-                <Route exact path={"/SearchResults"} render={()=> <SearchResults title={searchSong} load={loadComponent}/>}/>
+              <SideNav toggleShift={this.toggleShift.bind(this)} playlist/>
+              <Main shift={this.state.shift}/>
             </div>
-          </Router>
       );
     }
 }
-
 
 
 

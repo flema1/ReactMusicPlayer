@@ -7,7 +7,11 @@ const initialState = {
           songsApidataLoaded:false,
           playListId:null,
           SinglePlaylistSongs:null,
-          SinglePlaylistSongsApidataLoaded:false
+          SinglePlaylistSongsApidataLoaded:false,
+          streamURl:null,
+          trackIndex:null,
+          currCover:null,
+          searchValue:null   
 }
 
 export default initialState
