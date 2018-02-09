@@ -35,7 +35,7 @@ import * as types from './action-types'
         case types.GET_SEARCH_DATA_RECEIVED:
             console.log("SEARCH recieved");
             return Object.assign({}, state, {
-                songs: action.data,
+                songs: action.payload,
                 songsApidataLoaded:true
             })
 
@@ -46,6 +46,20 @@ import * as types from './action-types'
                 SinglePlaylistSongsApidataLoaded:true,
                 
             })
+
+     case types.SET_CURR_COVER:
+            console.log("SET_CURR_COVER");
+            return Object.assign({}, state, {
+                currCover: action.payload
+            })
+    case types.UPDATE_SEARCH_VAL:
+            return Object.assign({}, state, {
+                searchValue: action.payload
+            })
+    case 'SEARCH_SUCCESS':
+            return Object.assign({}, state, {
+                        searchValue: action.payload
+                    })
 
         default:
             return state
