@@ -11,9 +11,7 @@ reactPlayerRouter.post('/search',reactPlayerController.search);
 reactPlayerRouter.get('/playlists',reactPlayerController.getPlayLists);
 reactPlayerRouter.post('/loadPlaylist',reactPlayerController.loadPlaylist);
 reactPlayerRouter.post('/addToPlaylist',reactPlayerController.addToPlaylist);
-
-
-
+reactPlayerRouter.get('/favorites',reactPlayerController.getFavorites);
 
 module.exports = reactPlayerRouter;
 

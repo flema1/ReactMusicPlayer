@@ -7,6 +7,21 @@ var PlayMusic = require('playmusic');
 var pm = new PlayMusic();
 
 
+
+reactPlayerController.getFavorites = (req, res) => {
+  pm.init( /*{email: process.env.email, password: process.env.password}*/ req.user, (err) => {
+    if (err) console.error(err)
+    else {
+      pm.getFavorites(function (err, allSongs) {
+        // console.log(allSongs, "favs*********************");
+        res.status(200).json({
+          data: allSongs
+        });
+      });
+    }
+  })
+};
+
 reactPlayerController.addToPlaylist = (req, res) => {
   pm.init(req.user, (err) => {
     if (err) console.error(err)
@@ -98,7 +113,7 @@ reactPlayerController.song = (req, res) => {
 
 reactPlayerController.search = (req, res) => {
   console.log(req.body.song, "SEARCHING");
-  pm.init( /*{email: process.env.email, password: process.env.password}*/  req.user, (err) => {
+  pm.init( /*{email: process.env.email, password: process.env.password}*/ req.user, (err) => {
     if (err) return console.log("error", err);
     pm.getLibrary((err, library) => {
       if (err) console.error(err);
