@@ -64,6 +64,11 @@ export default (state = initialState, action) => {
         artistInfo: action.payload
       });
 
+    case types.ALL_ARTISTS_DATA_RECEIVED:
+      return Object.assign({}, state, {
+        allArtists: action.payload
+      });
+      
     default:
       return state
   }

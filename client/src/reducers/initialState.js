@@ -13,7 +13,8 @@ const initialState = {
           currCover:null,
           searchValue:null,
           isLoginSuccess: false, isLoginPending: false, loginError: null,
-          artistInfo:null 
+          artistInfo:null,
+          allArtists:null
 }
 
 export default initialState

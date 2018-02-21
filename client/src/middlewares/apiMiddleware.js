@@ -96,9 +96,8 @@ export const apiMiddleware = store => next => action => {
        //console.log( 'artistId clicked')
     axios.post('/rPlayer/getArtist', { artistId: action.payload /*artistId*/ })
       .then(res => {
-        console.log('getArtist res', res);
          return next({
-          type: "ARTIST_DATA_RECEIVED",
+          type: types.ARTIST_DATA_RECEIVED,
           payload: res.data.data
         })
       })
@@ -106,6 +105,20 @@ export const apiMiddleware = store => next => action => {
         console.log(error);
       });
       break;
+
+    
+     case types.REQUEST_ALL_ARTISTS_DATA:
+       axios.get('/rPlayer/allArtists')
+      .then((res) => {
+        return next({
+              type: types.ALL_ARTISTS_DATA_RECEIVED,
+              payload: res.data.data
+            })
+      })
+      .catch((err) => {
+        console.log(err, 'allArtists err')
+      })
+
 
       // Do nothing if the action does not interest us
     default:
