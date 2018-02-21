@@ -21,7 +21,7 @@ reactPlayerController.getAllartists = (req, res) => {
         //filtering out only track artitst data 
         var allArtits = library.data.items.forEach((track) => {
           unfilteredArtists.push({
-            artistName:track.artist,
+            artistName: track.artist,
             artistId: track.artistId[0],
             artistArtRef: track.artistArtRef ? track.artistArtRef[0].url : " "
           })
@@ -35,28 +35,16 @@ reactPlayerController.getAllartists = (req, res) => {
           let artistData = unfilteredArtists[i];
 
           filteredArtists[artistId] = artistData;
-           if (i===10) {
-           console.log('reapeated')
-            pm.getArtist(artistId, true, 2, 2, function(err, artistInfo){
-              console.log(artistInfo, "artistInfo******************")
-            });
-            console.log('10')
-
-          } 
-          if (filteredArtists[artistId] ) {
-            //console.log('reapeated')
-            // pm.getArtist(artistId, true, 2, 2, function(err, artistInfo){
-            //   console.log(artistInfo, "artistInfo******************")
-            // });
-
+          if (filteredArtists[artistId]) {
+            console.log('reapeated')
           } else {
             filteredArtists[artistId] = artistData;
           }
         }
 
         //coverting object keys into an array 
-        let data=Object.values(filteredArtists);
-        
+        let data = Object.values(filteredArtists);
+
         //retuning data to be consumed by the front end
         res.status(200).json({
           data: data
@@ -66,7 +54,18 @@ reactPlayerController.getAllartists = (req, res) => {
   })
 };
 
-
+reactPlayerController.getArtist = (req, res) => {
+  pm.init( /*{email: process.env.email, password: process.env.password}*/ req.user, (err) => {
+    if (err) console.error(err)
+    else {
+      pm.getArtist(req.body.artistId, true, 2, 2, function (err, artistInfo) {
+        res.status(200).json({
+          data: artistInfo
+        });
+      });
+    }
+  })
+};
 
 
 reactPlayerController.getFavorites = (req, res) => {
