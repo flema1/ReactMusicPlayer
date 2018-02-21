@@ -54,11 +54,21 @@ export default (state = initialState, action) => {
         searchValue: action.payload
       });
 
-    case 'SEARCH_SUCCESS':
+    case types.SEARCH_SUCCESS:
       return Object.assign({}, state, {
         searchValue: action.payload
       });
+      
+   case types.ARTIST_DATA_RECEIVED:
+      return Object.assign({}, state, {
+        artistInfo: action.payload
+      });
 
+    case types.ALL_ARTISTS_DATA_RECEIVED:
+      return Object.assign({}, state, {
+        allArtists: action.payload
+      });
+      
     default:
       return state
   }

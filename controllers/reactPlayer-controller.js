@@ -7,6 +7,113 @@ var PlayMusic = require('playmusic');
 var pm = new PlayMusic();
 
 
+
+
+reactPlayerController.getAllartists = (req, res) => {
+  pm.init( /*{email: process.env.email, password: process.env.password}*/ req.user, (err) => {
+    if (err) console.error(err)
+    else {
+
+      var unfilteredArtists = [];
+      //retriving all tract data from music service
+      pm.getAllTracks(function (err, library) {
+
+        //filtering out only track artitst data 
+        var allArtits = library.data.items.forEach((track) => {
+          unfilteredArtists.push({
+            artistName: track.artist,
+            artistId: track.artistId[0],
+            artistArtRef: track.artistArtRef ? track.artistArtRef[0].url : " "
+          })
+        })
+
+        //filtering out repeated artists using object and keys
+        var filteredArtists = {};
+        for (i = 0; i < unfilteredArtists.length; i++) {
+
+          let artistId = unfilteredArtists[i].artistId;
+          let artistData = unfilteredArtists[i];
+
+          filteredArtists[artistId] = artistData;
+          if (filteredArtists[artistId]) {
+            console.log('reapeated')
+          } else {
+            filteredArtists[artistId] = artistData;
+          }
+        }
+
+        //coverting object keys into an array 
+        let data = Object.values(filteredArtists);
+
+        //retuning data to be consumed by the front end
+        res.status(200).json({
+          data: data
+        });
+      });
+    }
+  })
+};
+
+reactPlayerController.getArtist = (req, res) => {
+  pm.init( /*{email: process.env.email, password: process.env.password}*/ req.user, (err) => {
+    if (err) console.error(err)
+    else {
+      pm.getArtist(req.body.artistId, true, 2, 2, function (err, artistInfo) {
+        res.status(200).json({
+          data: artistInfo
+        });
+      });
+    }
+  })
+};
+
+
+reactPlayerController.getFavorites = (req, res) => {
+  pm.init( /*{email: process.env.email, password: process.env.password}*/ req.user, (err) => {
+    if (err) console.error(err)
+    else {
+      pm.getFavorites(function (err, allSongs) {
+        // console.log(allSongs, "favs*********************");
+        res.status(200).json({
+          data: allSongs
+        });
+      });
+    }
+  })
+};
+
+reactPlayerController.getAllTracks = (req, res) => {
+  pm.init( /*{email: process.env.email, password: process.env.password}*/ req.user, (err) => {
+    if (err) console.error(err)
+    else {
+
+
+      // console.log(allSongs, "favs*********************");
+      // res.status(200).json({
+      //   data: allSongs
+      // });
+
+
+      pm.getAllTracks(function (err, library) {
+        var song = library.data.items.pop();
+        //console.log("start---------",library.data.items, "----getAllTracks");
+        pm.getStreamUrl(song.id, function (err, streamUrl) {
+          // console.log(streamUrl, "----getAllTracks_streamUrl");
+          res.status(200).json({
+            data: library.data.items
+          });
+        });
+      });
+
+
+    }
+  })
+};
+
+
+
+
+
 reactPlayerController.addToPlaylist = (req, res) => {
   pm.init(req.user, (err) => {
     if (err) console.error(err)
@@ -98,7 +205,7 @@ reactPlayerController.song = (req, res) => {
 
 reactPlayerController.search = (req, res) => {
   console.log(req.body.song, "SEARCHING");
-  pm.init( /*{email: process.env.email, password: process.env.password}*/  req.user, (err) => {
+  pm.init( /*{email: process.env.email, password: process.env.password}*/ req.user, (err) => {
     if (err) return console.log("error", err);
     pm.getLibrary((err, library) => {
       if (err) console.error(err);
