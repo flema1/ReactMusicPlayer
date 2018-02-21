@@ -12,6 +12,8 @@ reactPlayerRouter.get('/playlists',reactPlayerController.getPlayLists);
 reactPlayerRouter.post('/loadPlaylist',reactPlayerController.loadPlaylist);
 reactPlayerRouter.post('/addToPlaylist',reactPlayerController.addToPlaylist);
 reactPlayerRouter.get('/favorites',reactPlayerController.getFavorites);
-
+reactPlayerRouter.get('/allArtists',reactPlayerController.getAllartists);
+reactPlayerRouter.get ('/getAllTracks',reactPlayerController.getAllTracks);
+reactPlayerRouter.post('/getArtist',reactPlayerController.getArtist);
 module.exports = reactPlayerRouter;
 
