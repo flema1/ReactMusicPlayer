@@ -125,7 +125,9 @@ body {
 
 .clickmenu .title .edit{
   flex:1;
-  margin: auto;
+  /*margin: auto;*/
+  /*fl*/
+  align-content:flex-end;
 }
 
 .image{
@@ -141,7 +143,8 @@ body {
 }
 .edit {
   /*color: #dbcfcf;*/
-  color:#af9c9c;
+  /*color:#af9c9c;*/
+  color: #cdcdcd;
   position: relative;
   /*padding-left:90px;
   margin-top: -70px;*/
@@ -152,7 +155,8 @@ body {
 .play-button {
   /*color: #ff8c00;*/
   /*color: #fff;*/
-  color: tomato;
+  /*color: tomato;*/
+  color: #ff7675;
   /*color: #dbcfcf;*/
   /*position: absolute;*/
    position: relative; 
@@ -202,25 +206,28 @@ input{
 
 nav ul {
   display: flex;
-  margin: 20px;
+  /*margin: 20px;*/
   list-style: none;
 }
 
 nav ul li {
-  padding: 15px;
+  padding: 10px;
   font-size: 1.3em;
   /*letter-spacing: 1px;*/
   /*text-transform: uppercase;*/
-  font-family: 'Arial','inconsolata', monospace;
+  /*font-family: 'Arial','inconsolata', monospace;*/
 }
 
 nav ul li a {
-  color: black;
+  /*color: black;*/
+  color: #636e72;
   text-decoration: none;
+  font-family: "Avenir Next", "Avenir", sans-serif;
 }
 
 nav ul li a:hover {
-  font-weight: bold;
+  /*font-weight: bold;*/
+  color: #b2bec3;
 }
 
 svg {
@@ -235,7 +242,7 @@ svg {
 }
 
 .MenuItem{
-  background: green; 
+  background:#f5f5f5; 
 }
 .react-contextmenu-wrapper{
  overflow: scroll; 
@@ -256,16 +263,27 @@ svg {
    height: 50px; 
 }
 
-.hi{
+/*.hi{
   background: red;
   width: 92px;
-}
+}*/
 
 .innerMenu{
   display: flex;
   flex-direction: column;
+  padding-left: 0;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center
 }
 
+.innerMenu li{
+  padding: 0;
+  font-family: Helvetica
+}
+.click-menu nav {
+  background-color: #f5f5f5
+}
 
 
 
@@ -273,23 +291,27 @@ svg {
 /**/
 
 .dropbtn {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #f5f5f5;
+    color:grey;
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
+    display: flex;
+     text-align: center;
+    
 }
 
 .dropdown {
     position: relative;
-    /*display: inline-block;*/
+    /*display: block;*/
     display: flex;
     flex-direction: row; 
 }
 
 .dropdown-content {
     display: none;
+    left: 130px;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
@@ -306,15 +328,24 @@ svg {
     text-decoration: none;
     display: block;
 }
+.dropdown-content p{
+    color: grey; 
+    text-align: center;
+    font-family: Helvetica, sans-serif;
+    /*padding: 12px 16px;
+    text-decoration: none;
+    display: block;*/
+}
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown-content a:hover {background-color: #f1f1f1; display: flex;}
 
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: white;
 }
 
 
@@ -334,13 +365,15 @@ svg {
 }*/
 
 controls .Previous{
-  color: red;
+  /*color: red;*/
+color: #ff7675;
 }
 
 .results{
       display: flex;
     flex-direction: column;
 }
+
 
 
 .album {
@@ -512,7 +545,8 @@ body
   margin: 0;
   padding: 0;
   
-  background: #232323;
+  /*background: #232323;*/
+  background-color: #F8F8F8;
   color: #cdcdcd;
   font-family: "Avenir Next", "Avenir", sans-serif;
 }
@@ -525,23 +559,20 @@ a
   transition: color 0.3s ease;
 }
 
-a:hover
+/*a:hover
 {
   color: tomato;
-}
+}*/
 
 #menuToggle
 {
-  display: block;
-  position: fixed;
-  top: 50px;
-  left: 25px;
-  height:  100%;
   
-  z-index: 1;
-  
-  -webkit-user-select: none;
-  user-select: none;
+  /*display: block;*/
+  /*position: fixed;*/
+  /*top: 50px;*/
+  /*left: 25px;*/
+  /**/
+
 }
 
 #menuToggle input
@@ -571,7 +602,7 @@ a:hover
   height: 4px;
   margin-bottom: 5px;
   position: relative;
-  
+  background-color: red;
   background: #cdcdcd;
   border-radius: 3px;
   
@@ -602,7 +633,12 @@ a:hover
 {
   opacity: 1;
   transform: rotate(45deg) translate(-2px, -1px);
-  background: #fff;
+  background-color:  #cdcdcd;
+  display: none; /* hide icon */
+}
+.menu-close-active{
+  color: green;
+  
 }
 
 /*
@@ -612,6 +648,10 @@ a:hover
 {
   opacity: 0;
   transform: rotate(0deg) scale(0.2, 0.2);
+   background-color:  #cdcdcd;
+}
+.menu-close-active{
+  position: relative;
 }
 
 /*
@@ -620,22 +660,28 @@ a:hover
 #menuToggle input:checked ~ span:nth-last-child(2)
 {
   transform: rotate(-45deg) translate(0, -1px);
+   /*background-color:  #cdcdcd;*/
+   background-color: red;
+   /*float: right;*/
 }
 
 /*
  * Make this absolute positioned
  * at the top left of the screen
  */
-#menu
+.menu
 {
-  position: absolute;
+  /*position: absolute;*/
   width: 220px;
+  height: 100px;
+  padding-left: 0;
+  width: 300px;
   height: 100%;
-  margin: -100px 0 0 -50px;
-  padding: 50px;
-  padding-top: 125px;
-  
-  background: #ededed;
+  /*margin: 0px 0 0 -50px;*/
+  /*paddsing: 50px;*/
+  /*padding-top: 125px;*/
+  /*background: green;*/
+  /*background: #ededed;*/
   list-style-type: none;
   -webkit-font-smoothing: antialiased;
   /* to stop flickering of text in safari */
@@ -644,12 +690,14 @@ a:hover
   transform: translate(-100%, 0);
   
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+  position: absolute;
 }
 
-#menu li
+.menu li
 {
-  padding: 10px 0;
-  font-size: 16px;
+  /*padding: 10px 0;
+  font-size: 16px;*/
+  text-align: center;
 }
 
 /*
@@ -660,6 +708,235 @@ a:hover
   transform: none;
 }
 
+#login-container{
+  background-color:#f5f5f5;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+}
 
+.login-form{
+      width: 100%;
+    height: 100%;
+    font-size: 12px;
+    background-color: #F5F5F5;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+}
+.loginForm{
+  width: 300px;
+}
 /*/*/
+
+
+#form-container{
+  background-color: white;
+}
+
+#form-container h3{
+  padding: 50px 50px 0 50px;
+}
+.form-group-collection{
+   width: 300px;
+  margin: 0 auto 100px;
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.form-group-collection img{
+  width: 75%;
+    margin: auto;
+    padding-bottom: 10%;
+}
+.form-group{
+  display:flex;
+}
+.loginBtn{
+  outline: 0;
+    background-color: tomato ;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #f5f5f5;
+    border-radius: 3px;
+    margin-top: 20px;
+}
+
+
+
+.default-home-container {
+  display: flex;
+  background-color: #ff7675;
+  width: 100%;
+  justify-content:center;
+  /*flex-direction: column;
+  justify-content: center;
+  align-content: center;*/ 
+}
+.default-home-container p{
+
+}
+
+.default-home-item{
+  color:white;
+  margin-left: 50px;
+ 
+  
+}
+.default-home-container p{
+   font-family: "Avenir Next", "Avenir", sans-serif;
+}
+
+.all-songs-container{
+      display: flex;
+    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.song-container{
+    height: 250px;
+    width: 250px;
+    background: #f5f6fa;
+}
+
+.song-image img {
+    width: 250px;
+    height: 150px;
+}
+
+.song-title p{
+  font-size: 12px;
+}
+
+
+.app-container{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  flex-direction:column;
+}
+
+
+.body-container{
+  display:flex;
+  flex-direction:row;
+  height:90%;
+  width:100%;
+}
+
+.footer-container{
+  
+  height:10%;
+  width:100%;
+  padding: 20px 0 0px 0 
+}
+
+.favorites-container{
+  /*height:90%;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items: center;
+  top:-10px;
+  flex: 1;
+  overflow:scroll;*/
+   height:100%;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items: center;
+  
+  flex: 1;
+  overflow:scroll;
+ 
+  /*background: green;*/
+}
+
+@media (min-width: 500px) {
+  .menu{
+    background: red;
+  }
+
+}
+
+ .menu{
+    background: blue;
+  }
+
+/*.default-home-container{
+  height:90%;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items: center;
+  top:-10px;
+  flex: 1;
+  overflow:scroll;
+}*/
+
+.artist-container{
+  padding: 10px;
+}
+
+.all-artists-container{
+  height:100%;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items: center;
+  
+  flex: 1;
+  overflow:scroll;
+}
+
+.fav-song-title{
+  font-size: 12px;
+}
+.fav-song-album{
+   font-size: 12px;
+}
+.fav-song-durationMillis{
+   font-size: 12px;
+}
+.fav-song-artist{
+   font-size: 12px;
+}
+ 
+.fav-song-buttons{
+  display: flex;
+  flex-direction: row;
+}
+
+.search-results-container{
+   height:100%;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items: center;
+  position: relative;
+  flex: 1;
+  overflow:scroll;
+
+}
+
+.search-input{
+   border-radius: 20px;
+   width: 200px;
+   padding-top:10px;
+   padding-left: 23px;
+   font-family: "Avenir Next", "Avenir", sans-serif;
+}

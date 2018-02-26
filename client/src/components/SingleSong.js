@@ -42,28 +42,6 @@ class SingleSong extends Component {
 }
 
 
-// getSong=(storeId, setSong)=>{
-// console.log('-----------------', this.props.song.index);
-// axios.post('/rPlayer/song', {
-//     // song: this.state.value
-//     storeId:storeId
-//   })
-//   .then(res => {
-//          console.log('back');
-//          console.log(res.data.data);
-//         this.setState({
-//            streamURl:res.data.data
-//     })
-//     // alert(res.data.data.music);
-    
-//       this.props.loadTrackStreamURl(res.data.data, this.props.song.index)
-
-      
-//       }).catch(function (error) {
-//         console.log(error);
-//     });
-// }
-
     showIcon=()=> {
         this.refs.edit.style.height = '15em';
     };
@@ -72,31 +50,35 @@ class SingleSong extends Component {
     };
 
 
-render() {
-    const { song, index, setSong} = this.props;
-        return (
-            <div className={'container'} key={index}>
-               <div className={"image"}> <img 
-                        src={song.cover[0].url} 
-                        
-                        mode='fit' /></div>
-                    <h1 className={'title'}>{song.title}</h1>
-                    <h1 className={'album'}>{song.album}</h1>
-                    <h1 className={'durationMillis'}>{song.durationMillis}</h1>
-                    <h1 className={'artist'}>{song.artist}</h1>
-                <ClickMenu   className={'clickmenu'} song={this.props.song} allPlayLists={this.props.allPlayLists}/>
-                    
-                    <Ionicons.IoPlay 
-                      
-                        className={"edit"}
-                         width={'30px'} height={'2em'} onClick={()=>this.props.loadTrackStreamURl(song.storeId, song.index)}/>
-                   
-
-                     
-            </div>
-
-        )
-}
+    render() {
+        const { song, index, setSong, shift } = this.props;
+            return (
+                <div className={'container'} key={index}>
+                    <div className={"image"}> 
+                        <img 
+                            src={ song.cover? song.cover[0].url : song.artistImage[0].url } 
+                            mode='fit' 
+                        />
+                        </div>
+                            <h1 className={'title'}>{song.title}</h1>
+                            <h1 className={'album'}>{song.album}</h1>
+                            <h1 className={'durationMillis'}>{song.durationMillis}</h1>
+                            <h1 className={'artist'}>{song.artist}</h1>
+                        <ClickMenu   
+                            className={'clickmenu'} 
+                            song={this.props.song} 
+                            allPlayLists={this.props.allPlayLists}
+                            shift={ shift }
+                        />
+                        <Ionicons.IoPlay 
+                            className={"edit"}
+                            width={'30px'} 
+                            height={'2em'} 
+                            onClick={()=>this.props.loadTrackStreamURl(song.storeId, song.index)}
+                        /> 
+                    </div>
+            )
+    }
 }
 
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 import { ContextMenu, MenuItem, ContextMenuTrigger } from "react-contextmenu";
 import InnerMenu from './InnerMenu'
@@ -15,11 +16,10 @@ export default class ClickMenu extends Component {
       }
     }
 
-
   handleClick=(e)=>{
   e.preventDefault()
 
-  this.setState({ top: e.screenY, left: e.screenX, visibile: true},
+  this.setState({ top: e.clientY, left: e.clientX, visibile: true},
   ()=>{console.log(this.state.visibile)}
   );
   
@@ -31,18 +31,18 @@ setToNone=()=>{
 }
 
   render() {
-    const {handleChange, handleSubmit} = this.props;
+    const {handleChange, handleSubmit, shift, song} = this.props;
+   
     return (
-      <div display={'relative'}>
+      <div className="click-menu"  style={{backgroundColor:"#f5f5f5"}}>
           <Ionicons.IoAndroidMoreVertical
-                className={'hi'} 
                 onContextMenu={this.handleClick}
                 className={"edit"}
-                width={'500px'} 
-                height={'7em'} />
+                width={'50px'} 
+                height={'2em'} />
           {this.state.visibile? <InnerMenu 
-          left ={this.state.left-40} top={this.state.top-200} 
-          song={this.props.song}
+          left ={shift ? this.state.left-295 : this.state.left-5 } top={this.state.top} 
+          song={song}
          
           setToNone={this.setToNone}/>:null} 
     </div>

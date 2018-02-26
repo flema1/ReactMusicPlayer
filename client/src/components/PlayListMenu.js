@@ -59,8 +59,8 @@ const setCurrCover = (coverUrl) => {
 
 const mapStateToProps = (state) => { 
   return { 
-         apidataLoaded:state.SinglePlaylistSongsApidataLoaded,
-         songs:state.SinglePlaylistSongs
+         apidataLoaded:state.main.SinglePlaylistSongsApidataLoaded,
+         songs:state.main.SinglePlaylistSongs
    };
 };
 

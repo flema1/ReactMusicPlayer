@@ -3,6 +3,7 @@ import PlayButton from './Play';
 import FastforwardButton from './FastforwardButton';
 import BacktaceButton from './BacktaceButton';
 import Sound from './Sound';
+import * as Ionicons from 'react-icons/lib/md'
 
 
 
@@ -25,13 +26,25 @@ export default class Controls extends Component {
         }
 
         render() {
-            const {streamURl} = this.props;
+            const {streamURl, shift, fullScreen} = this.props;
                 return (
-                        <div className={'controls'}>
-                                <BacktaceButton/>
+                        // <div className={'controls-container'}>
+                         <div  style={{display:'flex',
+                         flexDirection:'row', justifyContent:'center'
+                         }}/*style={{ paddingBottom: '40px'}}*/ >
+                                {/*<BacktaceButton/>
                                 <PlayButton/>
-                                <FastforwardButton/>
-                                <Sound streamURl={this.state.streamURl}/>
+                                <FastforwardButton/>*/}
+                                <Sound shift={shift}  redirectTo={this.props.redirectTo} fullScreen={fullScreen}/>
+                    {/*<input 
+                    id="typeinp" 
+                    className={'mdl-slider mdl-js-slider'}
+                    type="range" 
+                    min="0" max="10" 
+                    value={this.state.value} 
+                    onChange={this.handleChange}
+                    step="1"/>*/}
+                   
                         </div>
                 )
         }

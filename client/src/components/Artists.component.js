@@ -37,11 +37,17 @@ class ArtistsComponent extends Component {
       const { artists, shift }=this.props;
       return ( 
         <div 
-          className={'all-artists-container'}
-          style={{ position: 'relative', left: shift ? '300px': 0 }} 
+         className={'all-artists-container'}
+         style={{ position: 'relative', left: shift ? '300px': 0}}
+
+        
+            
         >
             {
-              artists ? artists.map((artist, index) => 
+              artists ? 
+              
+                <div style={{ flex:1, flexWrap:'wrap', display: 'flex' , overflow:'scroll', paddingTop: '5%'}}  >{
+                  artists.map((artist, index) => 
                 <div className={'artist-container'} key={index}>
                   <button   onClick={ this.getArtistInfo.bind(this,artist.artistId )}> Info </button>
                   <div className={"song-image"}> 
@@ -53,7 +59,10 @@ class ArtistsComponent extends Component {
                   <p className={'song-title'}>{artist.artistId}</p>
                   <p className={'song-title'}>{artist.artistName}</p>
                 </div>
-              ): <h1>Loading</h1>
+                
+              ) }</div>
+              
+              : <h1>Loading</h1>
             }
         </div>
       )

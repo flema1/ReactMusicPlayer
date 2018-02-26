@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import LoginForm from './LoginForm';
 
-class Login extends Component {
+export default class Login extends Component {
   componentDidMount() {
     // document.body.scrollTop = 0;
     // document.querySelector('.menu').classList.remove('open');
@@ -20,4 +19,4 @@ class Login extends Component {
   }
 }
 
-export default connect( null , /*mapDispatchToProps*/ null )(Login)
+

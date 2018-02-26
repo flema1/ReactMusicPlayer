@@ -23,10 +23,7 @@ const searchRedux = (title) => {
 
 componentWillReceiveProps(nextProps){
     if (this.props.load===true){
-     // alert(this.props.title)
         this.props.search(this.props.title);
-
-       
     }
 }
 
@@ -38,7 +35,6 @@ render() {
     const {songs, songsApidataLoaded} = this.props;
     return (
         <div className={"results"}>
-            {/*<Sound streamURl={streamURl}/>*/}
             {songsApidataLoaded ? this.props.songs.map((song, index) => <SingleSong  allPlayLists={this.props.allPlayLists} song={
                 song} key={index} setSong={this.setSong}/>):<h1>Searching</h1>}
         </div>
@@ -46,15 +42,11 @@ render() {
 
 }
 
-
-
-
-
 const mapStateToProps = (state) => { 
-  return {  test: state.test, 
-            playlists: state.playlists,
-            songs: state.songs,
-            songsApidataLoaded:state.songsApidataLoaded
+  return {  test: state.main.test, 
+            playlists: state.main.playlists,
+            songs: state.main.songs,
+            songsApidataLoaded:state.main.songsApidataLoaded
    };
 };
 
