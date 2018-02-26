@@ -52,7 +52,7 @@ class Dashboard extends Component {
     const { currCover } = this.props;
     return (<div>
               <img src={currCover}  resizeMode="contain"  className={'mainCover'}  style={{  flex: 1, width: null, height: null}} />
-              <Controls/>
+              {/*<Controls/>*/}
             </div>)
   }
   
@@ -66,10 +66,11 @@ class Dashboard extends Component {
                     overflow: 'hidden',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    left: shift ? '300px': 0, position:'fixed', height:'100%', width: shift? '70%':'100%', backgroundColor:'#4c4b63',
-                    display:'flex', flexDirection:'column', justifyContent:'center', alignItems: 'center', top:'-10px'}}
+                    left: shift ? '300px': 0, /*position:'fixed',*/ height:'100%', width: '100%', /*backgroundColor:'#4c4b63',*/
+                    display:'flex', flexDirection:'column', position:'relative',justifyContent:'center', alignItems: 'center', top:'-10px'}}
                 > 
-                  { currCover ?  this.renderCover() : <Default redirectTo={ this.props.redirectTo}/> }
+                  { currCover ?  this.renderCover() : /*<Default redirectTo={ this.props.redirectTo}/> */ null}
+                 
                 </div>)
     }
 }
