@@ -6,6 +6,7 @@ require('dotenv').config();
 
 module.exports = function (passport, user) {
   var User = user;
+  var demoAuth = 'demo@musicPlayer'
 
   passport.serializeUser(function (user, done) {
     console.log(user, "seq------")
@@ -13,8 +14,7 @@ module.exports = function (passport, user) {
   });
 
   //LOCAL SIGNIN
-  passport.use('local-signin', new LocalStrategy(
-    {
+  passport.use('local-signin', new LocalStrategy({
       // by default, local strategy uses username and password, we will override with email
       usernameField: 'email',
       passwordField: 'password',
@@ -23,14 +23,24 @@ module.exports = function (passport, user) {
     function (req, email, password, done) {
       console.log(req.body.email, "  88 ", req.body.password)
       var pm = new PlayMusic();
+      let _email = null;
+      let _password = null;
+
+      if (req.body.email == demoAuth && req.body.password == demoAuth) {
+        _email = process.env.email;
+        _password = process.env.password;
+      } else {
+        _email = req.body.email;
+        _password = req.body.password;
+      }
+
       pm.login({
-        email: /*process.env.email*/ req.body.email,
-        password: /*process.env.password*/ req.body.password,
+        email: _email,
+        password: _password,
         androidId: null
       }, function (err, authToken) {
         if (err) console.error(err, "err");
-        // console.log(authToken, 'dataAAAAAAAA');
-        return done(null,authToken);
+        return done(null, authToken);
       })
     }
   ));
