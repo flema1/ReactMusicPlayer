@@ -34,6 +34,9 @@ passport.deserializeUser(function (user, done) {
 
 // static files
 app.use(express.static('public'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 //setting up port & listen 
 const PORT = process.env.PORT || 3001;
