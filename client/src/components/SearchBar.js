@@ -24,7 +24,8 @@ class SearchBar extends Component {
     this.props.search('');
    
     console.log('searchSong function-----------');
-    axios.post('/rPlayer/search', {
+   if (song){
+      axios.post('/rPlayer/search', {
         song: song
       })
       .then(res => {
@@ -35,6 +36,7 @@ class SearchBar extends Component {
       }).catch(function (error) {
         console.log(error);
       });
+   }
   }
 
   onSearchChange(event) {
